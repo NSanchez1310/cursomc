@@ -34,7 +34,6 @@ public class Endereco implements Serializable {
 	private Cidade cidade;
 	
 	private Endereco() {
-		
 	}
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
