@@ -3,6 +3,7 @@ package com.nsanchez1310.cursomc.domain;
 import java.io.Serializable;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,10 +32,12 @@ public class Endereco implements Serializable {
 	private Cliente cliente;
 
 	@ManyToOne
+//	@ManyToOne(fetch = FetchType.LAZY)
+//	@ManyToOne(CascadeType.ALL)
 	@JoinColumn(name="cidade_id")
 	private Cidade cidade;
 	
-	private Endereco() {
+	public Endereco() {
 	}
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
