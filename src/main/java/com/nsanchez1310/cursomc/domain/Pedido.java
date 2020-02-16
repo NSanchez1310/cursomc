@@ -48,6 +48,22 @@ public class Pedido  implements Serializable {
 	public Pedido() {
 		
 	}
+	
+	public Pedido(Integer id, Date instante,  Cliente cliente, Endereco enderecoDeEntrega) {
+		super();
+		this.id = id;
+		this.setInstante(instante);
+		this.cliente = cliente;
+		this.setEnderecoDeEntrega(enderecoDeEntrega);
+	}
+	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public Endereco getEnderecoDeEntrega() {
 		return enderecoDeEntrega;
@@ -81,13 +97,7 @@ public class Pedido  implements Serializable {
 		this.itens = itens;
 	}
 	
-	public Pedido(Integer id, Date instante,  Cliente cliente, Endereco enderecoDeEntrega) {
-		super();
-		this.id = id;
-		this.setInstante(instante);
-		this.cliente = cliente;
-		this.setEnderecoDeEntrega(enderecoDeEntrega);
-	}
+	
 	
 	public double getValorTotal() {
 		double soma = 0.0;
