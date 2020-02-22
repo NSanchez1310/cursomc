@@ -11,7 +11,6 @@ import com.nsanchez1310.cursomc.domain.ItemPedido;
 import com.nsanchez1310.cursomc.domain.PagamentoComBoleto;
 import com.nsanchez1310.cursomc.domain.Pedido;
 import com.nsanchez1310.cursomc.domain.enums.EstadoPagamento;
-import com.nsanchez1310.cursomc.repositories.ClienteRepository;
 import com.nsanchez1310.cursomc.repositories.ItemPedidoRepository;
 import com.nsanchez1310.cursomc.repositories.PagamentoRepository;
 import com.nsanchez1310.cursomc.repositories.PedidoRepository;
@@ -37,6 +36,9 @@ public class PedidoService {
 	
 	@Autowired
 	private ClienteService clienteService;
+	
+	@Autowired
+	private EmailService emailService;
 	
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = repo.findById(id);
@@ -65,7 +67,8 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		System.out.println(obj);
+	//	System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	}
 }

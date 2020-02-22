@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import com.nsanchez1310.cursomc.services.DBService;
+import com.nsanchez1310.cursomc.services.EmailService;
+import com.nsanchez1310.cursomc.services.MockEmailService;
 
 @Configuration
 //spring.datasource.url=jdbc:mysql://localhost:3306/curso_spring
@@ -24,6 +26,11 @@ public class TestConfig {
 		dbService.instantiateTestDatabase();		
 		return true;
 		
+	}
+	
+	@Bean
+	public EmailService emailService() {
+		return new MockEmailService();
 	}
 
 }
