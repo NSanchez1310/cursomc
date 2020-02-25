@@ -1,15 +1,19 @@
 package com.nsanchez1310.cursomc.resources;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.nsanchez1310.cursomc.dto.EmailDTO;
 import com.nsanchez1310.cursomc.security.JWTUtil;
 import com.nsanchez1310.cursomc.security.UserSS;
+import com.nsanchez1310.cursomc.services.AuthService;
 import com.nsanchez1310.cursomc.services.UserService;
 
 @RestController
@@ -18,6 +22,9 @@ public class AuthResource {
 
 	@Autowired
 	private JWTUtil jwtUtil;
+	
+	@Autowired
+	private AuthService service;
 	
 	@RequestMapping(value = "/refresh_token", method = RequestMethod.POST)
 	public ResponseEntity<Void> refreshToken(HttpServletResponse response) {
@@ -28,4 +35,9 @@ public class AuthResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
+	public ResponseEntity<Void> forgot(@Valid @RequestBody EmailDTO objDto) {
+		service.SendNewPassword(objDto.getEmail());
+		return ResponseEntity.noContent().build();
+	}
 }
