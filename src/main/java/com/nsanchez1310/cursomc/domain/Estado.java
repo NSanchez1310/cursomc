@@ -23,7 +23,7 @@ public class Estado implements Serializable {
 	
 	// @JsonBackReference - trocado JsonIgnore
 	@JsonIgnore
-	@OneToMany(mappedBy = "estado")
+	@OneToMany(mappedBy="estado")
 	private List<Cidade> cidades = new ArrayList<>();
 	
 	public Estado() {
